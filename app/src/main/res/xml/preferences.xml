@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+        app:key="key_theme"
+        app:title="@string/theme"
+        app:summary="%s"
+        app:entries="@array/themes"
+        app:entryValues="@array/themes"
+        app:iconSpaceReserved="false"
+        app:defaultValue="Default"/>
+
+    <SwitchPreferenceCompat
+        app:key="key_auto_save"
+        app:title="@string/auto_save"
+        app:summary="@string/auto_save_summary"
+        app:iconSpaceReserved="false"
+        app:defaultValue="true"/>
+
+    <SwitchPreferenceCompat
+        app:key="key_confirm_delete"
+        app:title="@string/confirm_delete"
+        app:summary="@string/confirm_delete_summary"
+        app:iconSpaceReserved="false"
+        app:defaultValue="true"/>
+
+    <SwitchPreferenceCompat
+        app:key="key_show_toast"
+        app:title="@string/show_popups"
+        app:summary="@string/show_popups_summary"
+        app:iconSpaceReserved="false"
+        app:defaultValue="true"/>
+
+    <SwitchPreferenceCompat
+        app:key="key_show_last_modified"
+        app:title="@string/show_last_modified"
+        app:summary="@string/show_last_modified_summary"
+        app:iconSpaceReserved="false"
+        app:defaultValue="true"/>
+
+    <ListPreference
+        app:key="key_date_format"
+        app:title="@string/date_format"
+        app:summary="%s"
+        app:entries="@array/date_formats"
+        app:entryValues="@array/date_format_values"
+        app:iconSpaceReserved="false"
+        app:defaultValue="M/d/yy"/>
+
+    <ListPreference
+        app:key="key_time_format"
+        app:title="@string/time_format"
+        app:summary="%s"
+        app:entries="@array/time_formats"
+        app:entryValues="@array/time_format_values"
+        app:iconSpaceReserved="false"
+        app:defaultValue="h:mm a"/>
+
+</PreferenceScreen>

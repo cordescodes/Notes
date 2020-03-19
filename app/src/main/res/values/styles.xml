@@ -1,0 +1,20 @@
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorContrast</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="actionOverflowButtonStyle">@style/OverflowTheme</item>
+    </style>
+
+    <style name="OverflowTheme" parent="@style/Widget.AppCompat.ActionButton.Overflow" >
+        <item name="android:tint">@color/colorContrast</item>
+    </style>
+
+    <style name="BottomAppBarTheme" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/colorContrast</item>
+        <item name="android:textColorHint">@android:color/secondary_text_dark</item>
+    </style>
+</resources>

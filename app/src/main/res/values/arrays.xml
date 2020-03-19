@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="themes">
+        <item>@string/default_theme</item>
+        <item>@string/light_theme</item>
+        <item>@string/dark_theme</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>Default</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="date_formats">
+        <item>@string/date_mdy</item>
+        <item>@string/date_dmy</item>
+        <item>@string/date_md</item>
+        <item>@string/date_dm</item>
+    </string-array>
+    <string-array name="date_format_values">
+        <item>M/d/yy</item>
+        <item>d/M/yy</item>
+        <item>MMM d</item>
+        <item>d MMM</item>
+    </string-array>
+
+    <string-array name="time_formats">
+        <item>@string/time_12</item>
+        <item>@string/time_24</item>
+    </string-array>
+    <string-array name="time_format_values">
+        <item>h:mm a</item>
+        <item>HH:mm</item>
+    </string-array>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top_margin"
+            android:layout_marginBottom="@dimen/top_margin"
+            android:layout_marginStart="@dimen/side_margin"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textColor="@color/colorContrast"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        android:theme="@style/BottomAppBarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        app:backgroundTint="@color/bottomAppBarColor"
+        app:navigationIcon="@null"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/new_note"
+        app:srcCompat="@drawable/ic_add_24dp"
+        app:layout_anchor="@id/bottom_app_bar"
+        app:tint="@color/fabIconColor"
+        app:backgroundTint="@color/fabColor"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

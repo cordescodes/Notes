@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="note" type="app.cordes.notepad.NoteItem" />
+        <variable name="handler" type="app.cordes.notepad.NotesListFragment.OnInteractionListener"/>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/note_item_background"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="@{() -> handler.onInteraction(note)}">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/note_item_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.82" />
+
+        <TextView
+            android:id="@+id/note_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{note.title}"
+            android:visibility="@{TextUtils.isEmpty(note.title) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/note_item_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            tools:text="Title of the note"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{note.content}"
+            android:visibility="@{TextUtils.isEmpty(note.content) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintEnd_toStartOf="@+id/note_item_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/note_title"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            tools:text="This is the content of a note" />
+
+        <TextView
+            android:id="@+id/note_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{note.displayDate}"
+            android:visibility="@{note.showLastModified ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="12sp"
+            tools:text="11/13/94"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{note.displayTime}"
+            android:visibility="@{note.showLastModified ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/note_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="12sp"
+            tools:text="12:00 AM"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

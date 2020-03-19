@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">@android:color/white</color>
+    <color name="toolbarColor">@color/colorDarkGray</color>
+    <color name="colorContrast">@android:color/white</color>
+    <color name="borderColor">@android:color/white</color>
+    <color name="fabColor">@color/colorDarkGray</color>
+    <color name="bottomAppBarColor">@color/colorDarkGray</color>
+</resources>

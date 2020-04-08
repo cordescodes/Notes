@@ -45,6 +45,7 @@ class NotesAdapter(private val listener: NotesListFragment.OnInteractionListener
             // search cleared, show all notes again
             visibleNotes = allNotes
             notifyDataSetChanged()
+            return
         }
 
         val searchResults = mutableListOf<Note>()
@@ -71,7 +72,7 @@ class NotesAdapter(private val listener: NotesListFragment.OnInteractionListener
     {
         fun bind(note: Note)
         {
-            binding.setVariable(BR.note, NoteItem(note, binding.root.context))
+            binding.setVariable(BR.item, NoteItem(note, binding.root.context))
             binding.setVariable(BR.handler, listener)
             binding.executePendingBindings()
         }

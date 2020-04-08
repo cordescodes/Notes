@@ -44,7 +44,7 @@
     <string name="auto_save">Automatically save changes</string>
     <string name="auto_save_summary">Automatically save all changes to notes. If disabled, a manual save button will instead be displayed.</string>
     <string name="confirm_delete">Confirm before deleting</string>
-    <string name="confirm_delete_summary">Show a confirmation message before deleting.</string>
+    <string name="confirm_delete_summary">Show a confirmation message before deleting notes.</string>
     <string name="show_popups">Show popups</string>
     <string name="show_popups_summary">Show success messages for Save, Delete and Duplicate operations.</string>
     <string name="show_last_modified">Show last modified date</string>

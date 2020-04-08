@@ -3,4 +3,6 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="side_margin">16dp</dimen>
     <dimen name="top_margin">12dp</dimen>
+    <dimen name="text_reg">12sp</dimen>
+    <dimen name="text_large">16sp</dimen>
 </resources>

@@ -17,9 +17,7 @@ import androidx.preference.PreferenceManager
 import app.cordes.notepad.databinding.ActivityNoteBinding
 import app.cordes.notepad.room.Note
 import app.cordes.notepad.room.NotesViewModel
-import app.cordes.notepad.util.KeyboardListener
 import kotlinx.android.synthetic.main.activity_note.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -65,21 +63,10 @@ class NoteActivity : AppCompatActivity()
 
         fab_save.visibility = if (autoSaveEnabled) View.GONE else View.VISIBLE
 
-        title_edittext.addTextChangedListener(textWatcher)
-        note_edittext.addTextChangedListener(textWatcher)
+        note_title.addTextChangedListener(textWatcher)
+        note_content.addTextChangedListener(textWatcher)
 
         setSupportActionBar(toolbar)
-    }
-
-    override fun onResume()
-    {
-        super.onResume()
-
-        // hide the cursor when keyboard closes
-        KeyboardListener(this)  {
-            title_edittext.clearFocus()
-            note_edittext.clearFocus()
-        }
     }
 
     override fun onPause()

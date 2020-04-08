@@ -28,32 +28,37 @@
                 app:itemIconTint="@color/colorPrimaryDark">
 
                 <EditText
-                    android:id="@+id/title_edittext"
+                    android:id="@+id/note_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:text="@={note.title}"
                     android:hint="@string/title"
                     android:importantForAutofill="no"
+                    android:singleLine="true"
                     android:inputType="text|textCapSentences"/>
 
             </androidx.appcompat.widget.Toolbar>
 
-            <EditText
-                android:id="@+id/note_edittext"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:layout_marginStart="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:layout_marginTop="@dimen/top_margin"
-                android:layout_marginBottom="@dimen/top_margin"
-                android:text="@={note.content}"
-                android:hint="@string/note"
-                android:importantForAutofill="no"
-                android:gravity="top"
-                android:inputType="textMultiLine|textCapSentences"/>
-
+                android:fillViewport="true">
+                <EditText
+                    android:id="@+id/note_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:layout_marginStart="@dimen/side_margin"
+                    android:layout_marginEnd="@dimen/side_margin"
+                    android:layout_marginTop="@dimen/top_margin"
+                    android:layout_marginBottom="@dimen/top_margin"
+                    android:text="@={note.content}"
+                    android:hint="@string/note"
+                    android:importantForAutofill="no"
+                    android:gravity="top"
+                    android:inputType="textMultiLine|textCapSentences"/>
+            </ScrollView>
         </LinearLayout>
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="note" type="app.cordes.notepad.NoteItem" />
+        <variable name="item" type="app.cordes.notepad.NoteItem" />
         <variable name="handler" type="app.cordes.notepad.NotesListFragment.OnInteractionListener"/>
         <import type="android.view.View"/>
         <import type="android.text.TextUtils"/>
@@ -17,66 +17,64 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:onClick="@{() -> handler.onInteraction(note)}">
+        android:onClick="@{() -> handler.onInteraction(item)}">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/note_item_guideline"
+        <LinearLayout
+            android:id="@+id/time_date_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.82" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="8dp"
+            android:paddingEnd="0dp"
+            android:visibility="@{item.showLastModified ? View.VISIBLE : View.GONE}"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.displayTime}"
+                android:textSize="@dimen/text_reg"
+                tools:text="12:00 AM"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.displayDate}"
+                android:textSize="@dimen/text_reg"
+                tools:text="11/13/94"/>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/note_title"
+            android:id="@+id/item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{note.title}"
-            android:visibility="@{TextUtils.isEmpty(note.title) ? View.GONE : View.VISIBLE}"
+            android:text="@{item.title}"
+            android:visibility="@{TextUtils.isEmpty(item.title) ? View.GONE : View.VISIBLE}"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/note_item_guideline"
+            app:layout_constraintEnd_toStartOf="@id/time_date_layout"
             app:layout_constraintTop_toTopOf="parent"
-            android:maxLines="1"
+            android:lines="1"
             android:ellipsize="end"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_large"
             android:textColor="?android:attr/textColorPrimary"
             tools:text="Title of the note"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{note.content}"
-            android:visibility="@{TextUtils.isEmpty(note.content) ? View.GONE : View.VISIBLE}"
+            android:text="@{item.content}"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintEnd_toStartOf="@+id/note_item_guideline"
+            app:layout_constraintEnd_toStartOf="@id/time_date_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/note_title"
+            app:layout_constraintTop_toBottomOf="@id/item_title"
+            android:minLines="1"
             android:maxLines="3"
             android:ellipsize="end"
             android:textSize="14sp"
             android:textColor="?android:attr/textColorPrimary"
             tools:text="This is the content of a note" />
-
-        <TextView
-            android:id="@+id/note_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{note.displayDate}"
-            android:visibility="@{note.showLastModified ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="12sp"
-            tools:text="11/13/94"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{note.displayTime}"
-            android:visibility="@{note.showLastModified ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toBottomOf="@id/note_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="12sp"
-            tools:text="12:00 AM"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

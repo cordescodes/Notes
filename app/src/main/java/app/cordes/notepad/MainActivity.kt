@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), NotesListFragment.OnInteractionListene
     }
 
     private val fragments = ArrayList<Fragment>()
+    private lateinit var searchView : SearchView
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity(), NotesListFragment.OnInteractionListene
     {
         menuInflater.inflate(R.menu.menu_main, menu)
 
-        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
+        searchView = menu.findItem(R.id.action_search).actionView as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener
         {
@@ -100,6 +101,13 @@ class MainActivity : AppCompatActivity(), NotesListFragment.OnInteractionListene
 
     override fun onInteraction(noteItem: NoteItem)
     {
+        // if we selected a search result, close the search bar
+        if (!searchView.isIconified)
+        {
+            searchView.setQuery("", false)
+            searchView.isIconified = true
+        }
+
         startActivity(
             Intent(this, NoteActivity::class.java)
                 .putExtra(NoteActivity.EXTRA_NOTE, noteItem.getNote()))

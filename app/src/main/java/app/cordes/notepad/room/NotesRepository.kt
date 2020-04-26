@@ -17,9 +17,9 @@ class NotesRepository(application: Application)
     }
 
     @WorkerThread
-    fun insert(note: Note)
+    suspend fun insert(note: Note) : Long
     {
-        noteDao.insert(note)
+        return noteDao.insert(note)
     }
 
     @WorkerThread

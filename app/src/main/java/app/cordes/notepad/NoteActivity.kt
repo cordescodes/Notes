@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
@@ -67,6 +68,12 @@ class NoteActivity : AppCompatActivity()
         note_content.addTextChangedListener(textWatcher)
 
         setSupportActionBar(toolbar)
+
+        if (autoSaveEnabled && note.id == 0L)
+           note.id = ViewModelProvider(this).get(NotesViewModel::class.java).insert(note, true)
+
+        if (TextUtils.isEmpty(note.content))
+            note_content.requestFocus()
     }
 
     override fun onPause()
@@ -127,9 +134,14 @@ class NoteActivity : AppCompatActivity()
     {
         n.date = Calendar.getInstance().time
         ViewModelProvider(this).get(NotesViewModel::class.java).insert(n)
+
         if (showToast && !duplicateOperation)
             Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show()
-        if (finish) finish()
+
+        if (finish)
+            finish()
+        else
+            noteChanged = false
     }
 
     private fun delete()

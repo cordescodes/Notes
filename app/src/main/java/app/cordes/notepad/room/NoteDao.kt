@@ -7,7 +7,7 @@ import androidx.room.*
 interface NoteDao
 {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(note: Note)
+    suspend fun insert(note: Note) : Long
 
     @Delete
     fun delete(note: Note)

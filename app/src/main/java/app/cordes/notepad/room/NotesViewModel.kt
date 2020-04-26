@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class NotesViewModel(application: Application) : AndroidViewModel(application)
 {
@@ -13,10 +14,14 @@ class NotesViewModel(application: Application) : AndroidViewModel(application)
         NotesRepository(application)
     private var notes : LiveData<MutableList<Note>> = notesRepository.getAll()
 
-    fun insert(note: Note)
+    fun insert(note: Note, block : Boolean = false) : Long
     {
-        viewModelScope.launch(Dispatchers.IO) {
-            notesRepository.insert(note)
+        if (block)
+            return runBlocking { notesRepository.insert(note) }
+        else
+        {
+            viewModelScope.launch(Dispatchers.IO) { notesRepository.insert(note) }
+            return note.id
         }
     }
 

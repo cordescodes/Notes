@@ -33,16 +33,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.displayTime}"
+                android:text="@{item.displayDate}"
                 android:textSize="@dimen/text_reg"
-                tools:text="12:00 AM"/>
+                tools:text="11/13/94"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.displayDate}"
+                android:text="@{item.displayTime}"
                 android:textSize="@dimen/text_reg"
-                tools:text="11/13/94"/>
+                tools:text="12:00 AM"/>
         </LinearLayout>
 
         <TextView
@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toStartOf="@id/time_date_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_title"
-            android:minLines="1"
+            android:minLines="2"
             android:maxLines="3"
             android:ellipsize="end"
             android:textSize="14sp"

@@ -4,14 +4,13 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Parcelize
 @Entity(tableName = "note_table")
 data class Note(
-    @PrimaryKey(autoGenerate = true) val id : Long,
+    @PrimaryKey(autoGenerate = true) var id : Long,
     var title : String = "",
     var content : String = "",
     var date : Date = Date()

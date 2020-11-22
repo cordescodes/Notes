@@ -44,10 +44,11 @@ class NoteActivity : AppCompatActivity()
         if (Intent.ACTION_SEND == intent.action && "text/plain" == intent.type)
         {
             note = Note()
-            note.content = intent.getStringExtra(Intent.EXTRA_TEXT)
+            val input = intent.getStringExtra(Intent.EXTRA_TEXT)
+            note.content = if (TextUtils.isEmpty(input)) "" else input as String
         }
         else
-            note = intent.getParcelableExtra(EXTRA_NOTE)
+            note = intent.getParcelableExtra(EXTRA_NOTE) as Note
 
         val binding: ActivityNoteBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_note)
@@ -94,17 +95,14 @@ class NoteActivity : AppCompatActivity()
         return when (item.itemId)
         {
             R.id.action_share -> {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, note.title + "\n" + note.content)
-                startActivity(Intent.createChooser(intent, getString(R.string.share_via)))
+                share()
                 true
             }
             R.id.action_duplicate -> {
                 val copy = Note()
                 copy.title = note.title
                 copy.content = note.content
-                save(copy, false, true)
+                save(copy, finish = false, duplicateOperation = true)
                 if (showToast)
                     Toast.makeText(this, R.string.duplicated, Toast.LENGTH_SHORT).show()
                 true
@@ -150,6 +148,23 @@ class NoteActivity : AppCompatActivity()
         if (showToast)
             Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show()
         finish()
+    }
+
+    private fun share()
+    {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+
+        val sb = StringBuilder()
+        if (!TextUtils.isEmpty(note.title))
+        {
+            sb.append(note.title)
+            sb.append("\n")
+        }
+        sb.append(note.content)
+
+        intent.putExtra(Intent.EXTRA_TEXT, sb.toString())
+        startActivity(Intent.createChooser(intent, getString(R.string.share_via)))
     }
 
     companion object

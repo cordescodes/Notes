@@ -13,21 +13,15 @@ class NoteItem(private val note : Note, context: Context)
 
     private val locale : Locale = Locale.getDefault()
     private val dateFormat = PreferenceManager.getDefaultSharedPreferences(context)
-        .getString("key_date_format", "M/d/yy")
+        .getString("key_date_format", "M/d/yy") as String
     private val timeFormat = PreferenceManager.getDefaultSharedPreferences(context)
-        .getString("key_time_format", "h:mm a")
+        .getString("key_time_format", "h:mm a") as String
 
     fun getNote() : Note { return note }
     fun getTitle() : String { return note.title }
     fun getContent() : String { return note.content }
 
-    fun getDisplayDate() : String
-    {
-        return SimpleDateFormat(dateFormat, locale).format(note.date)
-    }
+    fun getDisplayDate() : String = SimpleDateFormat(dateFormat, locale).format(note.date)
 
-    fun getDisplayTime() : String
-    {
-        return SimpleDateFormat(timeFormat, locale).format(note.date)
-    }
+    fun getDisplayTime() : String = SimpleDateFormat(timeFormat, locale).format(note.date)
 }

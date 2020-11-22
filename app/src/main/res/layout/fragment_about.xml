@@ -18,7 +18,16 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
-            android:contentDescription="@string/app_name"/>
+            android:importantForAccessibility="no"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/colorContrast"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Yet Another Notes App</string>
     <string name="short_app_name">Notes</string>
-    <string name="version" translatable="false">Version 1.2</string>
+    <string name="version" translatable="false">Version 1.3.0</string>
 
     <string name="github_link" translatable="false">github.com/cordescodes/Notes</string>
     <string name="published_under">Published under the MIT License</string>
@@ -20,6 +20,7 @@
 
     <string name="save">Save</string>
     <string name="saved">Saved</string>
+    <string name="revert">Revert changes</string>
     <string name="share">Share</string>
     <string name="share_via">Share via</string>
     <string name="duplicate">Duplicate</string>

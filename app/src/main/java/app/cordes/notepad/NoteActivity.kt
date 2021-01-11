@@ -25,14 +25,25 @@ import java.util.*
 class NoteActivity : AppCompatActivity()
 {
     private lateinit var note: Note
+    private var cachedTitle : String? = null
+    private var cachedContent : String? = null
     private var noteChanged = false
+    private var showRevertButton = false
     private var autoSaveEnabled = true
     private var confirmDelete = true
     private var showToast = true
 
     private val textWatcher = object : TextWatcher
     {
-        override fun afterTextChanged(a : Editable) { noteChanged = true }
+        override fun afterTextChanged(a : Editable)
+        {
+            noteChanged = true
+            if (!showRevertButton)
+            {
+                showRevertButton = true
+                invalidateOptionsMenu()
+            }
+        }
         override fun beforeTextChanged(a : CharSequence, b : Int, c : Int, d : Int) {}
         override fun onTextChanged(a : CharSequence, b : Int, c : Int, d : Int) {}
     }
@@ -49,6 +60,17 @@ class NoteActivity : AppCompatActivity()
         }
         else
             note = intent.getParcelableExtra(EXTRA_NOTE) as Note
+
+        if (savedInstanceState != null)
+        {
+            cachedTitle = savedInstanceState.getString(EXTRA_CACHED_TITLE)
+            cachedContent = savedInstanceState.getString(EXTRA_CACHED_CONTENT)
+        }
+        else
+        {
+            cachedTitle = note.title
+            cachedContent = note.content
+        }
 
         val binding: ActivityNoteBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_note)
@@ -77,6 +99,13 @@ class NoteActivity : AppCompatActivity()
             note_content.requestFocus()
     }
 
+    override fun onSaveInstanceState(outState: Bundle)
+    {
+        outState.putString(EXTRA_CACHED_TITLE, cachedTitle)
+        outState.putString(EXTRA_CACHED_CONTENT, cachedContent)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onPause()
     {
         if (noteChanged && autoSaveEnabled)
@@ -87,6 +116,7 @@ class NoteActivity : AppCompatActivity()
     override fun onCreateOptionsMenu(menu: Menu): Boolean
     {
         menuInflater.inflate(R.menu.menu_note, menu)
+        menu.findItem(R.id.action_revert).isVisible = showRevertButton
         return true
     }
 
@@ -94,6 +124,10 @@ class NoteActivity : AppCompatActivity()
     {
         return when (item.itemId)
         {
+            R.id.action_revert -> {
+                revert()
+                true
+            }
             R.id.action_share -> {
                 share()
                 true
@@ -167,8 +201,18 @@ class NoteActivity : AppCompatActivity()
         startActivity(Intent.createChooser(intent, getString(R.string.share_via)))
     }
 
+    private fun revert()
+    {
+        note_title.setText(cachedTitle)
+        note_content.setText(cachedContent)
+        showRevertButton = false
+        invalidateOptionsMenu()
+    }
+
     companion object
     {
         const val EXTRA_NOTE = "app.cordes.notes.NOTE"
+        const val EXTRA_CACHED_TITLE = "app.cordes.CACHED_TITLE"
+        const val EXTRA_CACHED_CONTENT = "app.cordes.CACHED_CONTENT"
     }
 }

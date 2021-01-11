@@ -6,4 +6,6 @@
     <color name="borderColor">@android:color/white</color>
     <color name="fabColor">@color/colorDarkGray</color>
     <color name="bottomAppBarColor">@color/colorDarkGray</color>
+    <color name="itemBackgroundColor">#303030</color>
+    <color name="itemBackgroundSelectedColor">@color/colorDarkGray</color>
 </resources>

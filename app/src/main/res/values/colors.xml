@@ -10,4 +10,6 @@
     <color name="fabColor">@android:color/black</color>
     <color name="fabIconColor">@android:color/white</color>
     <color name="bottomAppBarColor">@android:color/white</color>
+    <color name="itemBackgroundColor">#F0F0F0</color>
+    <color name="itemBackgroundSelectedColor">#E0E0E0</color>
 </resources>

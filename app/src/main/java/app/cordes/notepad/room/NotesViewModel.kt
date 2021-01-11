@@ -10,9 +10,9 @@ import kotlinx.coroutines.runBlocking
 
 class NotesViewModel(application: Application) : AndroidViewModel(application)
 {
-    private var notesRepository : NotesRepository =
-        NotesRepository(application)
-    private var notes : LiveData<MutableList<Note>> = notesRepository.getAll()
+    private var notesRepository = NotesRepository(application)
+    val notes : LiveData<MutableList<Note>>
+        get() = notesRepository.getAll()
 
     fun insert(note: Note, block : Boolean = false) : Long
     {
@@ -30,10 +30,5 @@ class NotesViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch(Dispatchers.IO) {
             notesRepository.delete(note)
         }
-    }
-
-    fun getAll() : LiveData<MutableList<Note>>
-    {
-        return notes
     }
 }

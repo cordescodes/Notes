@@ -32,13 +32,14 @@ class NoteActivity : AppCompatActivity()
     private var autoSaveEnabled = true
     private var confirmDelete = true
     private var showToast = true
+    private var newNote = false
 
     private val textWatcher = object : TextWatcher
     {
         override fun afterTextChanged(a : Editable)
         {
             noteChanged = true
-            if (!showRevertButton)
+            if (!newNote && !showRevertButton)
             {
                 showRevertButton = true
                 invalidateOptionsMenu()
@@ -71,6 +72,8 @@ class NoteActivity : AppCompatActivity()
             cachedTitle = note.title
             cachedContent = note.content
         }
+
+        newNote = note.title.isEmpty() && note.content.isEmpty()
 
         val binding: ActivityNoteBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_note)

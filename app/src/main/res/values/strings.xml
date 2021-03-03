@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Yet Another Notes App</string>
+    <string name="app_name">Notes Noir</string>
     <string name="short_app_name">Notes</string>
-    <string name="version" translatable="false">Version 1.3.0</string>
+    <string name="version" translatable="false">Version 1.4.0</string>
 
     <string name="github_link" translatable="false">github.com/cordescodes/Notes</string>
     <string name="published_under">Published under the MIT License</string>
